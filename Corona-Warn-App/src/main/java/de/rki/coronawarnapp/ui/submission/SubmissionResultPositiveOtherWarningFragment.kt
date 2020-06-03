@@ -72,7 +72,6 @@ class SubmissionResultPositiveOtherWarningFragment : BaseFragment(),
         viewModel.permissionState.observe(viewLifecycleOwner, Observer {
             if (it == ApiRequestState.FAILED) {
                 val successfulScanDialogInstance = DialogHelper.DialogInstance(
-                    requireActivity(),
                     R.string.submission_en_disabled_dialog_headline,
                     R.string.submission_en_disabled_dialog_body,
                     R.string.submission_en_disabled_dialog_button_positive,
@@ -88,7 +87,7 @@ class SubmissionResultPositiveOtherWarningFragment : BaseFragment(),
                         )
                     }
                 )
-                DialogHelper.showDialog(successfulScanDialogInstance)
+                DialogHelper.showDialog(requireActivity(), successfulScanDialogInstance)
             } else if (it == ApiRequestState.SUCCESS) {
                 submissionRequested = true
             }
